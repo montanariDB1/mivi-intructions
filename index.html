@@ -116,6 +116,15 @@
   .card-head .badge.mivi { background: var(--accent-dim); color: var(--accent); border-color: var(--accent-border); }
   .card-head .badge.once { background: var(--green-dim); color: var(--green); border-color: var(--green-border); }
   .card-head .badge.auto { background: var(--purple-dim); color: var(--purple); border-color: var(--purple-border); }
+  .card-head .badge.dev { background: rgba(240,82,82,0.12); color: #f87171; border-color: rgba(240,82,82,0.35); }
+  .dev-banner {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(240,82,82,0.07); border: 1px solid rgba(240,82,82,0.25);
+    border-left: 3px solid #f87171;
+    border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;
+    font-size: 13px; color: #fca5a5;
+  }
+  .dev-banner strong { color: #f87171; }
   .card-body { padding: 16px 18px; }
 
   /* ── STEPS ── */
@@ -409,7 +418,7 @@
   <div class="section" id="step2">
     <div class="section-label">Etapa 2 — Uma vez</div>
     <h2>Criar e configurar o App Meta da MIVI</h2>
-    <p class="section-desc">Este é o app central. Todos os clientes da MIVI conectam suas WABAs aqui via Embedded Signup. O webhook é configurado aqui uma única vez e recebe eventos de todos os tenants.</p>
+    <p class="section-desc">Este é o app central — todos os clientes da MIVI conectam suas WABAs aqui via Embedded Signup. O dono da MIVI cria o app e adiciona o desenvolvedor como administrador. A partir daí, toda a configuração técnica é responsabilidade do desenvolvedor.</p>
 
     <div class="card">
       <div class="card-head">
@@ -422,8 +431,31 @@
           <li>Acesse <strong><a href="https://developers.facebook.com/apps" target="_blank">developers.facebook.com/apps</a></strong> e clique em <strong>Criar app</strong>.</li>
           <li>Selecione o tipo <strong>Business</strong>. Clique em Avançar.</li>
           <li>Nome do app: use um nome interno claro, sem mencionar "WhatsApp", "Meta" ou qualquer produto da Meta — a Meta rejeita apps com esses termos no nome. Ex: <code>MIVI Platform</code> ou <code>MIVI Messaging</code>.</li>
-          <li>Vincule ao Business Manager da MIVI criado na etapa anterior. Clique em <strong>Criar app</strong>.</li>
-          <li>No app criado, vá em <strong>Configurações → Básico</strong> e preencha:
+          <li>Vincule ao Business Manager da MIVI criado na etapa anterior. Clique em <strong>Criar app</strong>. O app será criado e você será redirecionado ao painel — <strong>pare aqui</strong> e siga para o próximo passo.</li>
+        </ol>
+        <div style="margin-top: 12px;">
+          <div class="alert info">
+            <span>ℹ️</span>
+            <div class="alert-body">Após criar o app, siga imediatamente para o próximo passo — adicionar o desenvolvedor como administrador. As configurações técnicas do app serão feitas pelo desenvolvedor.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Configurações básicas do app
+        <span class="badge once">Uma vez</span>
+        <span class="badge dev">Desenvolvedor</span>
+      </div>
+      <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
+        <ol class="steps">
+          <li>No app, vá em <strong>Configurações → Básico</strong> e preencha:
             <br>— URL da política de privacidade da MIVI
             <br>— URL dos termos de serviço
             <br>— Ícone (mínimo 1024×1024px)
@@ -480,8 +512,13 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         Adicionar o produto WhatsApp ao app
         <span class="badge once">Uma vez</span>
+        <span class="badge dev">Desenvolvedor</span>
       </div>
       <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
         <ol class="steps">
           <li>No painel do app, clique em <strong>Adicionar produto</strong> (no menu lateral).</li>
           <li>Encontre <strong>WhatsApp</strong> e clique em <strong>Configurar</strong>.</li>
@@ -495,8 +532,13 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         Configurar o Webhook
         <span class="badge once">Uma vez</span>
+        <span class="badge dev">Desenvolvedor</span>
       </div>
       <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
         <ol class="steps">
           <li>No menu lateral do app, vá em <strong>WhatsApp → Configuração → Webhooks</strong>.</li>
           <li>Clique em <strong>Configurar webhooks</strong> e preencha:
@@ -558,8 +600,13 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         App Review — permissões WhatsApp
         <span class="badge once">Uma vez</span>
+        <span class="badge dev">Desenvolvedor</span>
       </div>
       <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
         <ol class="steps">
           <li>No app, acesse <strong>App Review → Permissões e recursos</strong> e solicite:<br>
             <code>whatsapp_business_messaging</code> · <code>whatsapp_business_management</code>
@@ -593,8 +640,13 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
         Parâmetros obrigatórios no fluxo Embedded Signup
         <span class="badge mivi">MIVI configura</span>
+        <span class="badge dev">Desenvolvedor</span>
       </div>
       <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
         <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">O botão de Embedded Signup no frontend deve iniciar o fluxo Meta com os seguintes parâmetros:</p>
         <pre><span class="c">// Parâmetros do fluxo Embedded Signup</span>
 FB.login(<span class="k">function</span>(response) {
@@ -622,8 +674,13 @@ FB.login(<span class="k">function</span>(response) {
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         O que o webhook recebe após o Embedded Signup do cliente
         <span class="badge auto">Automático</span>
+        <span class="badge dev">Desenvolvedor</span>
       </div>
       <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
         <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px;">Quando um cliente completa o Embedded Signup, a Meta dispara um evento para o webhook da MIVI com as credenciais do tenant:</p>
         <pre>{
   <span class="s">"entry"</span>: [{
@@ -666,8 +723,13 @@ GET https://graph.facebook.com/v19.0/oauth/access_token
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Como se registrar como Tech Provider
         <span class="badge mivi">MIVI faz</span>
+        <span class="badge dev">Desenvolvedor</span>
       </div>
       <div class="card-body">
+        <div class="dev-banner">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div><strong>Executado pelo desenvolvedor</strong> — esta etapa é de responsabilidade técnica e será realizada pelo desenvolvedor da MIVI, não pelo dono da empresa.</div>
+        </div>
         <ol class="steps">
           <li>Acesse o <strong><a href="https://www.facebook.com/business/partner-directory/search?solution_type=messaging" target="_blank">Meta Partner Directory</a></strong> e clique em <strong>Become a Partner</strong>.</li>
           <li>Preencha o formulário de parceiro com os dados da MIVI — tipo de solução: <strong>Messaging</strong>.</li>
@@ -684,38 +746,6 @@ GET https://graph.facebook.com/v19.0/oauth/access_token
     </div>
   </div>
 
-  <!-- STEP 6 -->
-  <div class="section" id="step6">
-    <div class="section-label">Etapa 6 — Por cliente</div>
-    <h2>O que a MIVI faz após cada cliente conectar</h2>
-    <p class="section-desc">Quando um cliente completa o Embedded Signup, a MIVI recebe as credenciais automaticamente. Estes são os passos que o sistema (ou a equipe MIVI) executa para cada novo tenant.</p>
-
-    <div class="card">
-      <div class="card-head">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-        Checklist pós-Embedded Signup (por cliente)
-        <span class="badge mivi">MIVI executa</span>
-      </div>
-      <div class="card-body">
-        <ol class="steps">
-          <li>Receber e armazenar <code>waba_id</code>, <code>phone_number_id</code> e token do webhook — associados ao tenant no banco de dados da MIVI.</li>
-          <li>Gerar o <strong>System User Token de longa duração</strong> via API para o WABA do cliente — evita expiração do token de curta duração recebido no Embedded Signup.</li>
-          <li>Registrar o número de telefone do cliente via API:<br>
-            <pre style="margin-top: 8px;">POST /v19.0/<span class="s">{phone_number_id}</span>/register
-{
-  <span class="s">"messaging_product"</span>: <span class="s">"whatsapp"</span>,
-  <span class="s">"pin"</span>: <span class="s">"000000"</span>
-}</pre>
-          </li>
-          <li>Configurar o <strong>Display Name</strong> do cliente via API ou pelo <a href="https://business.facebook.com/wa/manage/phone-numbers/" target="_blank">WhatsApp Manager</a>. O nome passa por aprovação da Meta (1–7 dias).</li>
-          <li>Assinar o webhook para a WABA específica do cliente para garantir recebimento dos eventos:<br>
-            <pre style="margin-top: 8px;">POST /v19.0/<span class="s">{waba_id}</span>/subscribed_apps</pre>
-          </li>
-          <li>Marcar o tenant como <strong>ativo</strong> no sistema MIVI e notificar o cliente que a integração está pronta.</li>
-        </ol>
-      </div>
-    </div>
-  </div>
 
   <hr>
 
