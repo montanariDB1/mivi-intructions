@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como conectar seu WhatsApp Business — MIVI</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --bg2: #ffffff;
+    --bg3: #f0f2f5;
+    --border: rgba(0,0,0,0.08);
+    --border-md: rgba(0,0,0,0.13);
+    --text: #1a1d27;
+    --muted: #6b7280;
+    --dim: #9ca3af;
+    --white: #ffffff;
+    --accent: #25d366;
+    --accent-dark: #128c4a;
+    --accent-dim: rgba(37,211,102,0.1);
+    --accent-border: rgba(37,211,102,0.3);
+    --warn: #f59e0b;
+    --warn-dim: rgba(245,158,11,0.08);
+    --warn-border: rgba(245,158,11,0.3);
+    --info: #3b82f6;
+    --info-dim: rgba(59,130,246,0.08);
+    --info-border: rgba(59,130,246,0.25);
+    --num: #25d366;
+    --radius: 12px;
+    --mono: 'SF Mono','Fira Code','Consolas',monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0a2e18 0%, #0d3d20 60%, #0a2e18 100%);
+    padding: 56px 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.35);
+    border-radius: 20px; padding: 4px 13px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 22px;
+  }
+  h1 {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.02em;
+    color: #fff; line-height: 1.2; margin-bottom: 12px;
+  }
+  .hero-sub {
+    color: rgba(255,255,255,0.6); font-size: 15px;
+    max-width: 540px; line-height: 1.65; margin-bottom: 28px;
+  }
+  .hero-time {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 13px; color: rgba(255,255,255,0.7);
+  }
+  .hero-time strong { color: #fff; }
+
+  /* PROGRESS */
+  .progress {
+    background: #fff; border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; overflow-x: auto; scrollbar-width: none;
+  }
+  .progress::-webkit-scrollbar { display: none; }
+  .prog-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 0; margin-right: 28px;
+    white-space: nowrap; font-size: 12px; font-weight: 600;
+    color: var(--dim); border-bottom: 2px solid transparent;
+    flex-shrink: 0;
+  }
+  .prog-item.you { color: var(--accent-dark); border-bottom-color: var(--accent); }
+  .prog-item.mivi { color: var(--info); border-bottom-color: var(--info); }
+  .prog-num {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--bg3); font-size: 10px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .prog-item.you .prog-num { background: var(--accent-dim); color: var(--accent-dark); }
+  .prog-item.mivi .prog-num { background: var(--info-dim, rgba(59,130,246,0.1)); color: var(--info); }
+
+  /* LAYOUT */
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 48px 80px; }
+
+  /* RESPONSIBILITY BANNER */
+  .resp-you {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--accent-dim); border: 1px solid var(--accent-border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px; padding: 10px 14px; margin-bottom: 10px;
+    font-size: 13px; color: var(--accent-dark); font-weight: 500;
+  }
+  .resp-mivi {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--info-dim, rgba(59,130,246,0.08)); border: 1px solid var(--info-border);
+    border-left: 3px solid var(--info);
+    border-radius: 8px; padding: 10px 14px; margin-bottom: 10px;
+    font-size: 13px; color: #1d4ed8; font-weight: 500;
+  }
+
+  /* SECTION */
+  .section { margin-top: 48px; }
+  .section-header {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px;
+  }
+  .step-bubble {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 16px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    box-shadow: 0 2px 12px rgba(37,211,102,0.35);
+  }
+  .step-bubble.mivi-step {
+    background: var(--info);
+    box-shadow: 0 2px 12px rgba(59,130,246,0.3);
+  }
+  .step-meta { flex: 1; }
+  .step-title {
+    font-size: 20px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 3px;
+  }
+  .step-why { font-size: 13px; color: var(--muted); }
+  .eta {
+    flex-shrink: 0; background: var(--bg3);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 4px 10px; font-size: 12px; color: var(--muted);
+    white-space: nowrap; margin-top: 4px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .card-head {
+    padding: 13px 18px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 9px;
+    font-size: 13px; font-weight: 600; color: var(--text);
+    background: var(--bg3);
+  }
+  .card-body { padding: 16px 18px; }
+
+  /* STEPS */
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li {
+    counter-increment: s; position: relative;
+    padding: 0 0 14px 34px; font-size: 14px; line-height: 1.65;
+    border-left: 1px solid var(--border); margin-left: 10px;
+  }
+  ol.steps li:last-child { border-left: 1px solid transparent; padding-bottom: 0; }
+  ol.steps li::before {
+    content: counter(s);
+    position: absolute; left: -10px; top: 1px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--bg3); border: 1px solid var(--border-md);
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.steps li strong { color: var(--text); font-weight: 600; }
+
+  /* ALERTS */
+  .alert {
+    border-radius: 8px; padding: 11px 14px; margin-top: 10px;
+    font-size: 13px; line-height: 1.6; display: flex; gap: 10px;
+  }
+  .alert.warn { background: var(--warn-dim); border: 1px solid var(--warn-border); color: #92400e; }
+  .alert.info { background: var(--info-dim); border: 1px solid var(--info-border); color: #1e40af; }
+  .alert.ok   { background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--accent-dark); }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+    font-size: 14px; display: flex; align-items: flex-start; gap: 10px;
+    cursor: pointer;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li.checked { color: var(--dim); text-decoration: line-through; }
+  .chk {
+    width: 18px; height: 18px; border: 1.5px solid var(--border-md);
+    border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .checked .chk { background: var(--accent); border-color: var(--accent); }
+  .checked .chk::after {
+    content: '';
+    display: block; width: 5px; height: 9px;
+    border-right: 2px solid #fff; border-bottom: 2px solid #fff;
+    transform: rotate(40deg) translate(-1px,-1px);
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius); padding: 20px 22px; margin-bottom: 10px;
+  }
+  .highlight-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--accent-dark); margin-bottom: 10px;
+  }
+
+  /* CODE */
+  code {
+    background: var(--bg3); border: 1px solid var(--border-md);
+    border-radius: 4px; padding: 1px 6px;
+    font-family: var(--mono); font-size: 12px; color: #065f46;
+  }
+
+  /* LINK */
+  a { color: var(--accent-dark); text-decoration: none; border-bottom: 1px solid rgba(18,140,74,0.25); transition: border-color 0.15s; }
+  a:hover { border-color: var(--accent-dark); }
+
+  /* DIVIDER */
+  .mivi-takes-over {
+    display: flex; align-items: center; gap: 12px;
+    margin: 40px 0 32px;
+    font-size: 13px; font-weight: 600; color: var(--info);
+  }
+  .mivi-takes-over::before, .mivi-takes-over::after {
+    content: ''; flex: 1; height: 1px; background: var(--info-border);
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 24px 48px; font-size: 13px; color: var(--muted); text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .hero, .wrap, .footer { padding-left: 20px; padding-right: 20px; }
+    h1 { font-size: 24px; }
+    .progress { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Guia de integração — MIVI
+  </div>
+  <h1>Conecte seu WhatsApp Business<br>à plataforma MIVI</h1>
+  <p class="hero-sub">Siga estes passos para preparar sua conta WhatsApp Business e vinculá-la à MIVI. O processo leva entre 1 e 3 semanas — a maior parte é tempo de aprovação da Meta, não trabalho seu.</p>
+  <div class="hero-time">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Trabalho seu: <strong>~2 horas no total</strong> &nbsp;·&nbsp; Aprovações Meta: <strong>1 a 3 semanas</strong>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress">
+  <div class="prog-item you"><span class="prog-num">1</span> Conta Meta</div>
+  <div class="prog-item you"><span class="prog-num">2</span> Business Manager</div>
+  <div class="prog-item you"><span class="prog-num">3</span> Verificação da empresa</div>
+  <div class="prog-item you"><span class="prog-num">4</span> Criar WABA</div>
+  <div class="prog-item you"><span class="prog-num">5</span> Conectar à MIVI</div>
+  <div class="prog-item mivi"><span class="prog-num">✓</span> MIVI cuida do resto</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ANTES DE COMEÇAR -->
+  <div class="section">
+    <div class="highlight">
+      <div class="highlight-title">O que você vai precisar antes de começar</div>
+      <ul class="checklist" id="pre-checklist">
+        <li onclick="toggle(this)"><span class="chk"></span> Site da sua empresa com domínio próprio (ex: <code>suaagencia.com.br</code>) — sem domínio registrado a Meta rejeita a verificação</li>
+        <li onclick="toggle(this)"><span class="chk"></span> CNPJ ativo e documentos da empresa (contrato social ou certificado de registro)</li>
+        <li onclick="toggle(this)"><span class="chk"></span> Comprovante de endereço comercial em nome da empresa</li>
+        <li onclick="toggle(this)"><span class="chk"></span> Número de telefone que será usado no WhatsApp (fixo ou móvel, capaz de receber SMS)</li>
+        <li onclick="toggle(this)"><span class="chk"></span> E-mail corporativo</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="section" id="step1">
+    <div class="section-header">
+      <div class="step-bubble">1</div>
+      <div class="step-meta">
+        <div class="step-title">Crie sua conta Meta</div>
+        <div class="step-why">A Meta exige uma conta pessoal do Facebook para gerenciar ativos de negócio. Você vai usar essa conta para acessar o Business Manager.</div>
+      </div>
+      <div class="eta">~15 min</div>
+    </div>
+    <div class="resp-you">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Feito por você
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Criar ou confirmar conta Facebook
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>Se ainda não tem conta no Facebook, acesse <a href="https://facebook.com" target="_blank">facebook.com</a> e crie uma usando o e-mail corporativo da empresa.</li>
+          <li>Confirme o número de telefone quando solicitado — a Meta usa isso para verificar a identidade.</li>
+          <li>Use uma conta com algum tempo de existência sempre que possível — contas recém-criadas às vezes geram alertas durante a verificação da empresa.</li>
+        </ol>
+        <div class="alert info">
+          <span>ℹ️</span>
+          <div>Você não precisa de uma conta no <code>developers.facebook.com</code>. Isso é exclusivo para desenvolvedores — no seu caso, apenas o Facebook pessoal e o Business Manager são necessários.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="section" id="step2">
+    <div class="section-header">
+      <div class="step-bubble">2</div>
+      <div class="step-meta">
+        <div class="step-title">Crie o Business Manager</div>
+        <div class="step-why">O Business Manager é o painel da Meta onde sua empresa gerencia ativos — incluindo a conta WhatsApp Business. Precisa estar no nome legal da empresa.</div>
+      </div>
+      <div class="eta">~20 min</div>
+    </div>
+    <div class="resp-you">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Feito por você
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        Criar o Business Manager
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>Acesse <a href="https://business.facebook.com" target="_blank">business.facebook.com</a> e clique em <strong>Criar conta</strong>.</li>
+          <li>Preencha o <strong>nome legal exato da empresa</strong> — exatamente como consta no CNPJ. Esse nome será comparado com seus documentos na etapa de verificação.</li>
+          <li>Informe seu nome e e-mail corporativo. Confirme o e-mail recebido.</li>
+          <li>Em <strong>Configurações do negócio → Informações do negócio</strong>, preencha o endereço e telefone da empresa.</li>
+        </ol>
+        <div class="alert warn">
+          <span>⚠️</span>
+          <div><strong>Atenção:</strong> se você já tem um Business Manager para anúncios, pode usar o mesmo — desde que o nome legal esteja correto. Verifique antes de prosseguir.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="section" id="step3">
+    <div class="section-header">
+      <div class="step-bubble">3</div>
+      <div class="step-meta">
+        <div class="step-title">Verifique o negócio na Meta</div>
+        <div class="step-why">Sem a verificação do negócio, a Meta não permite criar uma conta WhatsApp Business com volume de mensagens adequado para uso profissional.</div>
+      </div>
+      <div class="eta">1–14 dias úteis</div>
+    </div>
+    <div class="resp-you">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Feito por você — principal gargalo do processo
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Documentos necessários
+      </div>
+      <div class="card-body">
+        <ul class="checklist" id="docs-checklist">
+          <li onclick="toggle(this)"><span class="chk"></span> CNPJ ativo (comprovante da Receita Federal)</li>
+          <li onclick="toggle(this)"><span class="chk"></span> Contrato social ou certificado de registro da empresa</li>
+          <li onclick="toggle(this)"><span class="chk"></span> Comprovante de endereço comercial em nome da empresa</li>
+          <li onclick="toggle(this)"><span class="chk"></span> Site no ar com domínio próprio mencionando o nome da empresa</li>
+          <li onclick="toggle(this)"><span class="chk"></span> Página de política de privacidade publicada no site</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Como submeter a verificação
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>No Business Manager, acesse <strong>Configurações do negócio → Central de segurança → Verificação do negócio</strong>.<br>
+            Link direto: <a href="https://business.facebook.com/settings/security" target="_blank">business.facebook.com/settings/security</a>
+          </li>
+          <li>Clique em <strong>Iniciar verificação</strong>, selecione <strong>Brasil</strong> e informe o CNPJ.</li>
+          <li>Carregue os documentos solicitados em PDF, JPG ou PNG — legíveis e sem cortes.</li>
+          <li>Verifique o domínio do site adicionando a meta tag fornecida pela Meta no <code>&lt;head&gt;</code> do site. Se precisar de ajuda com isso, fale conosco.</li>
+          <li>Clique em <strong>Enviar para revisão</strong> e aguarde — a Meta costuma responder em 2 a 5 dias úteis.</li>
+        </ol>
+        <div class="alert warn">
+          <span>⚠️</span>
+          <div><strong>Causas mais comuns de rejeição:</strong> nome no Business Manager diferente do CNPJ; site sem domínio próprio; documentos ilegíveis ou vencidos; endereço que não bate com o comprovante. Se for rejeitado, corrija e ressubmeta — não há limite de tentativas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="section" id="step4">
+    <div class="section-header">
+      <div class="step-bubble">4</div>
+      <div class="step-meta">
+        <div class="step-title">Crie sua conta WhatsApp Business (WABA)</div>
+        <div class="step-why">A WABA é a conta oficial do WhatsApp da sua empresa. Ela fica vinculada ao seu Business Manager e é onde o número de telefone e o nome de exibição são registrados.</div>
+      </div>
+      <div class="eta">~30 min</div>
+    </div>
+    <div class="resp-you">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Feito por você
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Criar a WABA pelo WhatsApp Manager
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>Acesse o <a href="https://business.facebook.com/wa/manage/" target="_blank">WhatsApp Manager</a> dentro do Business Manager.</li>
+          <li>Clique em <strong>Começar</strong> ou <strong>Adicionar número de telefone</strong>.</li>
+          <li>Preencha o <strong>nome de exibição</strong> — como sua empresa vai aparecer para quem recebe mensagens. Regras da Meta:
+            <br>— Deve refletir o nome real da empresa ou marca
+            <br>— Não pode ser genérico ("Atendimento", "Suporte")
+            <br>— Não pode conter "WhatsApp", "Meta" ou nomes de produtos da Meta
+          </li>
+          <li>Selecione a categoria do negócio e informe o número de telefone que será usado. O número receberá um código de verificação por SMS ou ligação.</li>
+          <li>Após a verificação do número, sua WABA estará criada e aparecerá no WhatsApp Manager.</li>
+        </ol>
+        <div class="alert warn">
+          <span>⚠️</span>
+          <div><strong>Importante:</strong> o número não pode estar cadastrado em nenhuma outra conta WhatsApp — pessoal ou Business. Se estiver, remova o cadastro no app antes de registrar aqui.</div>
+        </div>
+        <div class="alert info">
+          <span>ℹ️</span>
+          <div>O <strong>Display Name</strong> passa por aprovação da Meta e pode levar de 1 a 7 dias. Você pode avançar para a próxima etapa enquanto aguarda.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="section" id="step5">
+    <div class="section-header">
+      <div class="step-bubble">5</div>
+      <div class="step-meta">
+        <div class="step-title">Conecte sua WABA à MIVI</div>
+        <div class="step-why">Este é o único passo técnico da sua parte. Você vai autorizar a plataforma MIVI a acessar sua conta WhatsApp Business — tudo pelo painel MIVI, sem configuração manual.</div>
+      </div>
+      <div class="eta">~5 min</div>
+    </div>
+    <div class="resp-you">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Feito por você — dentro do painel MIVI
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        Fazer login via Embedded Signup no painel MIVI
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>Acesse o painel MIVI e vá na seção de <strong>Integrações → WhatsApp</strong>.</li>
+          <li>Clique em <strong>Conectar conta WhatsApp</strong>. Uma janela da Meta será aberta.</li>
+          <li>Faça login com a conta Facebook vinculada ao seu Business Manager.</li>
+          <li>Selecione o <strong>Business Manager</strong> da sua empresa e a <strong>WABA</strong> criada na etapa anterior.</li>
+          <li>Confirme as permissões solicitadas — você está autorizando a MIVI a enviar e receber mensagens em nome da sua conta WhatsApp Business.</li>
+          <li>Clique em <strong>Concluir</strong>. A janela fecha e a conexão aparece como ativa no painel.</li>
+        </ol>
+        <div class="alert ok">
+          <span>✅</span>
+          <div><strong>Pronto — sua parte termina aqui.</strong> A MIVI recebe as credenciais automaticamente e configura o resto. Você será notificado quando a integração estiver totalmente ativa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIVI TAKES OVER -->
+  <div class="mivi-takes-over">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    A partir daqui a MIVI cuida de tudo
+  </div>
+
+  <div class="card" style="border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.03);">
+    <div class="card-body">
+      <div class="resp-mivi" style="margin-bottom: 14px;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Executado automaticamente pela MIVI
+      </div>
+      <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Após o Embedded Signup, nossa plataforma recebe suas credenciais de forma segura e executa automaticamente:</p>
+      <ul style="list-style: none; font-size: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--info); margin-top: 2px;">→</span> Recebimento e armazenamento seguro da WABA ID, Phone Number ID e token de acesso</li>
+        <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--info); margin-top: 2px;">→</span> Configuração do webhook para receber mensagens e eventos da sua conta em tempo real</li>
+        <li style="display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--info); margin-top: 2px;">→</span> Ativação da integração no seu painel — envio e recebimento de mensagens liberados</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- RESUMO DE PRAZO -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px;">
+    <div class="card" style="margin-bottom: 0;">
+      <div class="card-body" style="text-align: center; padding: 20px 14px;">
+        <div style="font-size: 28px; font-weight: 800; color: var(--accent-dark); letter-spacing: -0.02em;">1–2 sem</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Cenário rápido<br>(docs e site ok)</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom: 0;">
+      <div class="card-body" style="text-align: center; padding: 20px 14px;">
+        <div style="font-size: 28px; font-weight: 800; color: var(--warn); letter-spacing: -0.02em;">3–5 sem</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Cenário comum<br>(pequenas revisões)</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom: 0;">
+      <div class="card-body" style="text-align: center; padding: 20px 14px;">
+        <div style="font-size: 28px; font-weight: 800; color: #dc2626; letter-spacing: -0.02em;">6–10 sem</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Com rejeições<br>(re-submissões)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Guia de integração <strong>MIVI</strong> · Em caso de dúvidas em qualquer etapa, entre em contato antes de avançar
+</div>
+
+<script>
+  function toggle(el) { el.classList.toggle('checked'); }
+</script>
+
+</body>
+</html>
