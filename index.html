@@ -442,6 +442,41 @@
 
     <div class="card">
       <div class="card-head">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Adicionar o desenvolvedor como administrador do app
+        <span class="badge once">Uma vez</span>
+      </div>
+      <div class="card-body">
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 14px;">O dono da conta Meta cria o app, mas toda a configuração técnica — webhook, permissões, product setup, App Review — será feita pelo desenvolvedor. Para isso, o desenvolvedor precisa ser adicionado como <strong>Administrador</strong> do app.</p>
+        <ol class="steps">
+          <li>Dentro do app recém-criado, acesse no menu lateral: <strong>Configurações → Funções do app → Funções</strong>.<br>
+            Link direto após criar o app: <code>developers.facebook.com/apps/[APP_ID]/roles/roles/</code>
+          </li>
+          <li>Clique em <strong>Adicionar pessoas</strong> e busque pelo perfil Facebook ou e-mail do desenvolvedor:<br>
+            <div class="cred" style="margin-top: 8px;">
+              <div class="cred-label">Perfil / e-mail do desenvolvedor a adicionar</div>
+              <div class="cred-val">[INSERIR PERFIL FACEBOOK OU E-MAIL DO DESENVOLVEDOR MIVI]</div>
+              <div class="cred-hint">Solicite este dado ao desenvolvedor antes de iniciar esta etapa</div>
+            </div>
+          </li>
+          <li>Selecione a função <strong>Administrador</strong> — não Desenvolvedor ou Testador. Somente admin tem acesso completo para configurar webhook, permissões e submeter o App Review.</li>
+          <li>Clique em <strong>Enviar</strong> e avise o desenvolvedor — ele precisa aceitar o convite acessando <a href="https://developers.facebook.com/apps" target="_blank">developers.facebook.com/apps</a>.</li>
+        </ol>
+        <div style="margin-top: 12px;">
+          <div class="alert ok">
+            <span>✅</span>
+            <div class="alert-body"><strong>Após este passo, o desenvolvedor assume toda a configuração técnica.</strong> O dono da conta não precisa fazer mais nada no painel de desenvolvedor — apenas acompanhar o status quando solicitado.</div>
+          </div>
+          <div class="alert warn">
+            <span>⚠️</span>
+            <div class="alert-body"><strong>Segurança:</strong> nunca compartilhe o App Secret, senhas ou tokens de acesso. O acesso via função de administrador é o método oficial e seguro da Meta.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         Adicionar o produto WhatsApp ao app
         <span class="badge once">Uma vez</span>
